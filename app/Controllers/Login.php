@@ -22,12 +22,13 @@ class Login extends BaseController
 					]
 				],
 				'password' => [
-					'rules'  => 'required|min_length[8]|max_length[255]|validateUser[email,password]',
+					'rules'  => 'required|min_length[8]|max_length[255]|validateUser[email,password]|validateUserActive[email]',
 					'errors' => [
 						'required' => 'Musisz podać hasło.',
 						'min_length' => 'Hasło musi mieć co najmniej 8 znaków.',
 						'max_length' => 'Hasło nie może być dłuższe niż 255 znaków.',
-						'validateUser' => 'Błędne dane logowania.'
+						'validateUser' => 'Błędne dane logowania.',
+						'validateUserActive' => 'Musisz aktywować swoje konto aby móc się zalogować.'
 					]
 				],
 			];
@@ -35,7 +36,7 @@ class Login extends BaseController
 			if($this->validate($rules)){
 				$model = new UserModel();
 				$user = $model->where('email', $this->request->getVar('email'))->first();
-				
+				//if($user['active'])
 				$data = [
 					'email' => $user['Email'],
 

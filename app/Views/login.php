@@ -24,6 +24,11 @@
                                     <?= session()->get('registerSuccess') ?>
                                     </div>
                                 <?php endif; ?>
+                                <?php if(session()->get('confirmSuccess')): ?>
+                                    <div class="alert alert-success" role="alert">
+                                    <?= session()->get('confirmSuccess') ?>
+                                    </div>
+                                <?php endif; ?>
  
                                     <div class="form-group">
                                     <small class="form-text text-muted"></small>
