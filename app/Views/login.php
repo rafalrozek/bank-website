@@ -19,6 +19,11 @@
                                     </div>
                                     </div>
                                     <?php endif; ?>
+                                <?php if(session()->get('logOut')): ?>
+                                    <div class="alert alert-success" role="alert">
+                                    <?= session()->get('logOut') ?>
+                                </div>
+                                <?php endif; ?>    
                                 <?php if(session()->get('registerSuccess')): ?>
                                     <div class="alert alert-success" role="alert">
                                     <?= session()->get('registerSuccess') ?>

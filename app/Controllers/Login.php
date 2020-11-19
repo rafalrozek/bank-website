@@ -36,9 +36,13 @@ class Login extends BaseController
 			if($this->validate($rules)){
 				$model = new UserModel();
 				$user = $model->where('email', $this->request->getVar('email'))->first();
-				//if($user['active'])
+				$firstname = $model->getContact($user['UserId'])['FirstName'];
+				print_r($firstname);
 				$data = [
+					'id' => $user['UserId'],
 					'email' => $user['Email'],
+					'firstname' => $firstname,
+					'isLoggedIn' => '1'
 
 				];
 				session()->set($data);

@@ -34,5 +34,11 @@ class UserModel extends Model{
      
        
      }
+     public function getContact($id){
+        $contactModel = new UserContactModel();
+        $user = $contactModel->where('UserId', $id)->first();
+        return $user;
+
+     }
 }
 

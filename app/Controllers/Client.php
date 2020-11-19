@@ -12,6 +12,13 @@ class Client extends BaseController
 		echo view('templates/footer');
 
 	}
+	public function logout(){
+		$session = session();
+		$session->remove('isLoggedIn');
+		$session->setFlashdata('logOut', 'Wylogowano pomyślnie.');
+		return redirect()->to('/login');
+
+	}
 	
 
 }

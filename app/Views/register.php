@@ -4,7 +4,7 @@
             <div class="container block-center">
                 <p class="text-center h1">Witaj!</p>
                         <img src="/assets/icons/banking.png" height="80px" width="80px" class="img-responsive d-block mx-auto mt-4" alt="Bank immage" > </img>
-                            <form class="mt-4" method="POST">
+                            <form class="mt-4" method="POST" action="/register">
                                 <h5>Rejestracja</h5>
                                 <hr class="m-0" />
                                 <div class="row mt-4">

@@ -76,9 +76,9 @@ class Register extends BaseController
 				$model->addUser($newUser, $this->request->getVar('firstname'),$this->request->getVar('lastname'));
 
 				$session = session();
-				$session->setFlashdata('registerSuccess', 'Zarejestrowano pomyślnie. <br />Potwierdź adres email, aby się zalogować.');
+				
 				$this->sendVerificationEmail($this->request->getVar('firstname'), $this->request->getVar('email'));
-
+				$session->setFlashdata('registerSuccess', 'Zarejestrowano pomyślnie. <br />Potwierdź adres email, aby się zalogować.');
 				return redirect()->to('/login');
 				
 			}
@@ -94,12 +94,12 @@ class Register extends BaseController
 	private function sendVerificationEmail($name, $useremail){
 		$email = \Config\Services::email();
 
-        $email->setTo("rafal98.poczta@gmail.com");
+        $email->setTo($useremail);
         $email->setFrom('kontakt@rafalrozek.pl', 'MyBank');
         
 		$email->setSubject("Potwierdzenie adresu email.");
 		$link = "http://iab.rafalrozek.pl/confirm/".$useremail."/".md5($useremail . "+salt")."";
-        $email->setMessage("Cześć ".$name."!<br/> Przejdź na poniższy link aby aktowować konto: <a href=".$link.">".$link."</a>");
+        $email->setMessage("Cześć ".$name."! Przejdź na poniższy link aby aktowować konto: ".$link."");
 
         if ($email->send()) 
 		{
