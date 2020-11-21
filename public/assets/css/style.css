@@ -10,13 +10,13 @@ body{
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: rgb(220, 255, 255) !important;
-    border-color: rgb(150, 255, 255);
+    border-color: rgb(151, 255, 255);
     color: #212529;
 }
 
 .btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited {
-    background-color: rgb(245, 255, 255) !important;
-    border-color: rgb(208, 255, 255);
+    background-color: rgb(239, 245, 245) !important;
+    border-color: rgb(211, 211, 211);
     color: #212529;
 }
 
