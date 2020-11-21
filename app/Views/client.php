@@ -28,12 +28,24 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <!-- FORM !-->
+                    <form method="POST" action="/addMoney">
+                    <div class="col-12 mt-4">
+                    <p>Podaj kwote:</p>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="firstname" id="firstname" placeholder="Kwota" min="10" max="1000" value=100>
+                    </div>
+  
+
+                    
+                    </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
-                    <button type="button" class="btn btn-primary">Zapisz</button>
+                    <button type="submit" class="btn btn-primary">Zapisz</button>
                 </div>
+                </form>
                 </div>
             </div>
             </div>
