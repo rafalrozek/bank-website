@@ -6,26 +6,51 @@
                 
                 <h1 style="float: left">Witaj, <?=session()->get('firstname')?></h1>
                 <span class="pull-right">
-                    <a href="/client/logout"><img alt="Wyloguj" style="float: right" src="/assets/icons/logout.png" width="16" height="16" ></a>
+                    <a href="/client/logout" style="float: right" data-toggle="tooltip" data-placement="top" title="Wyloguj sie"><img alt="Wyloguj" src="/assets/icons/logout.png" width="16" height="16" ></a>
                 </span>
                 <div class="clearfix"></div>
                 <hr />
-                <p class="h2 ml-3">0,00 PLN</p>
+                <h2 class=" ml-3" style="float:left">0,00 PLN</h2>
+                <span data-toggle="modal" data-target="#pozyczkaModal">
+                <a href="#" style="float: left; margin-left: 5px" data-toggle="tooltip" data-placement="top" title="Dodaj pożyczke" ><img alt="Wyloguj" src="/assets/icons/add.png" width="16" height="16" ></a>
+                </span>
+                
+                <div class="clearfix"></div>
             </div>
-
+            <!-- POZYCZKA MODAL !-->
+            <div class="modal fade" id="pozyczkaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Dodaj pożyczke</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zamknij</button>
+                    <button type="button" class="btn btn-primary">Zapisz</button>
+                </div>
+                </div>
+            </div>
+            </div>
+            <!-- END POZYCZKA MODAL !-->
             
             <div class="col-md-12 bg-white shadow p-3 mt-3">
-                <h3>Twoje zgłoszenia</h1>
+                <h3>Twoje pożyczki</h1>
                 <hr />
-                <p class="ml-3"> Brak zgłoszeń </p>
+                <p class="ml-3"> Brak pożyczek </p>
             
             </div>
         </div>
         <div class="col-md-4 col-xs-12">
             <div class="col-md-12 bg-white shadow p-3">
-            <h3>Twoje pożyczki</h3>
-            <hr />
-            <p class="ml-3"> Brak pożyczek </p>
+            <h3>Twoje zgłoszenia</h1>
+                <hr />
+                <p class="ml-3"> Brak zgłoszeń </p>
             </div>
             <div class="col-md-12 bg-white shadow p-3 mt-3">
             <h3>Utwórz zgłoszenie</h3>
