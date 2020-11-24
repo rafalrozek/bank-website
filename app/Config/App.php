@@ -182,13 +182,12 @@ class App extends BaseConfig
 	|
 	*/
 	public $sessionDriver            = 'CodeIgniter\Session\Handlers\FileHandler';
-	public $sessionCookieName        = 'ci_session';
-	public $sessionExpiration        = 7200;
+	public $sessionCookieName        = 'mybank_session';
+	public $sessionExpiration        = 288000;
 	public $sessionSavePath          = WRITEPATH . 'session';
 	public $sessionMatchIP           = false;
 	public $sessionTimeToUpdate      = 300;
 	public $sessionRegenerateDestroy = false;
-
 	/*
 	|--------------------------------------------------------------------------
 	| Cookie Related Variables
@@ -205,7 +204,7 @@ class App extends BaseConfig
 	|
 	*/
 	public $cookiePrefix   = '';
-	public $cookieDomain   = '';
+	public $cookieDomain   = 'http://localhost/';
 	public $cookiePath     = '/';
 	public $cookieSecure   = false;
 	public $cookieHTTPOnly = false;
@@ -247,8 +246,8 @@ class App extends BaseConfig
 	public $CSRFHeaderName = 'X-CSRF-TOKEN';
 	public $CSRFCookieName = 'csrf_cookie_name';
 	public $CSRFExpire     = 7200;
-	public $CSRFRegenerate = true;
-	public $CSRFRedirect   = true;
+	public $CSRFRegenerate = false;
+	public $CSRFRedirect   = false;
 
 	/*
 	|--------------------------------------------------------------------------

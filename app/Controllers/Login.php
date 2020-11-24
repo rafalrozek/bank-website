@@ -32,7 +32,7 @@ class Login extends BaseController
 					]
 				],
 			];
-
+			
 			if($this->validate($rules)){
 				$model = new UserModel();
 				$user = $model->where('email', $this->request->getVar('email'))->first();
@@ -45,6 +45,7 @@ class Login extends BaseController
 					'isLoggedIn' => '1'
 
 				];
+				echo "ESSA";
 				session()->set($data);
 				return redirect()->to('/client');
 			}
