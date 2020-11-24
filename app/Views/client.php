@@ -4,7 +4,7 @@
         <div class="col-md-8 col-xs-12 mb-4 mb-md-0">
             <div class="col-md-12 bg-white shadow p-3">
                 
-                <h1 style="float: left">Witaj, <?=session()->get('firstname')?></h1>
+                <h1 style="float: left">Witaj, <?=esc(session()->get('firstname'))?></h1>
                 <span class="pull-right">
                     <a href="/client/logout" style="float: right" data-toggle="tooltip" data-placement="top" title="Wyloguj sie"><img alt="Wyloguj" src="/assets/icons/logout.png" width="16" height="16" ></a>
                 </span>
@@ -29,10 +29,11 @@
                 </div>
                 <div class="modal-body">
                     <!-- FORM !-->
-                    <form method="POST" action="/addMoney">
+                    <form method="POST" action="/client/addMoney">
                     <div class="col-12 mt-4">
                     <p>Podaj kwote:</p>
                     <div class="form-group">
+                        <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                         <input type="number" class="form-control" name="firstname" id="firstname" placeholder="Kwota" min="10" max="1000" value=100>
                     </div>
   
@@ -67,12 +68,14 @@
             <div class="col-md-12 bg-white shadow p-3 mt-3">
             <h3>Utwórz zgłoszenie</h3>
             <hr />
-            <form method="POST" action="/report">
+            <form method="post" action="/client/report">
             <div class="col-12 mt-4">
             <div class="form-group">
                 <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Temat">
             </div>
             <div class="form-group">
+               <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+               
                 <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Opis"></textarea>
             </div>
 
