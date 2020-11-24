@@ -37,7 +37,7 @@ class Login extends BaseController
 				$model = new UserModel();
 				$user = $model->where('email', $this->request->getVar('email'))->first();
 				$firstname = $model->getContact($user['UserId'])['FirstName'];
-				print_r($firstname);
+				//print_r($firstname);
 				$data = [
 					'id' => $user['UserId'],
 					'email' => $user['Email'],
@@ -45,7 +45,7 @@ class Login extends BaseController
 					'isLoggedIn' => '1'
 
 				];
-				echo "ESSA";
+				
 				session()->set($data);
 				return redirect()->to('/client');
 			}

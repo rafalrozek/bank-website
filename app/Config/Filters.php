@@ -19,7 +19,7 @@ class Filters extends BaseConfig
 		'before' => [
 			//'auth'
 			//'honeypot'
-			//'csrf',
+			'csrf' => ['except' => ['login', 'register']]
 		],
 		'after'  => [
 			'toolbar',
@@ -37,6 +37,6 @@ class Filters extends BaseConfig
 	//    'isLoggedIn' => ['before' => ['account/*', 'profiles/*']],
 	public $filters = [
 		'auth' => ['before' => ['client/*']],
-		'csrf' => ['before' => ['client/*']]
+		//'csrf' => ['before' => ['client/*']]
 	];
 }

@@ -2,6 +2,7 @@
 
 use CodeIgniter\Model;
 use App\Models\UserContactModel;
+use App\Models\AccountModel;
 use CodeIgniter\Database\ConnectionInterface;
 
 class UserModel extends Model{
@@ -31,6 +32,14 @@ class UserModel extends Model{
         ];
         $this->set('JoinDate', 'NOW()');
         $contactModel->insert($newContact);
+
+        //create account
+        $account = new AccountModel();
+        $newAccount =[
+            'UserId' => $insertId, 
+            'Balance' =>  0,
+        ];
+        $account->insert($newAccount);
      
        
      }
@@ -39,6 +48,19 @@ class UserModel extends Model{
         $user = $contactModel->where('UserId', $id)->first();
         return $user;
 
+     }
+     public function addMoney($id, $money){
+        $model = new AccountModel();
+ 
+        $account = $model->set('Balance', $this->getMoney($id)+$money)->where('UserId', $id)->update();
+    
+
+     }
+     public function getMoney($id){
+        $model = new AccountModel();
+        $account = $model->where('UserId', $id)->first();
+
+        return $account['Balance'];
      }
 }
 

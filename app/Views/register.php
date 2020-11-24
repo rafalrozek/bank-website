@@ -22,7 +22,7 @@
                                     <?php endif; ?>
                                     <div class="col-12 col-sm-6">
                                     <div class="form-group">
-                                   
+                                    <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                     <input type="text" class="form-control" name="firstname" id="firstname" value="<?= set_value('firstname') ?>" placeholder="Imie">
                                     </div>
                                     </div>

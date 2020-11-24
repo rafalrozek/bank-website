@@ -5,6 +5,7 @@
                 <p class="text-center h1">Witaj!</p>
                         <img src="/assets/icons/banking.png" height="80px" width="80px" class="img-responsive d-block mx-auto mt-4" alt="Bank immage" > </img>
                             <form class="mt-4" method="post" action="/login">
+                            <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                 <h5>Logowanie</h5>
                                 <hr class="m-0" />
                                 <div class="col-12 mt-4">
@@ -34,7 +35,7 @@
                                     <?= session()->get('confirmSuccess') ?>
                                     </div>
                                 <?php endif; ?>
- 
+                                    
                                     <div class="form-group">
                                     <small class="form-text text-muted"></small>
                                     <input type="text" class="form-control" name="email" id="email" value="" placeholder="Email">
