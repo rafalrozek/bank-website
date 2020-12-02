@@ -6,7 +6,7 @@ class LoanModel extends Model{
 
     protected $table = 'IAB_Loan';
     protected $primaryKey = 'LoanId';
-    protected $allowedFields = ['UserId', 'Money', 'paid','addres', 'DateStart', "DateEnd"];
+    protected $allowedFields = ['LoanId', 'UserId', 'Money', 'paid','addres', 'DateStart', "DateEnd"];
     #protected $beforeInsert = ['joinUser'];
 
     public function getUserLoans($id){

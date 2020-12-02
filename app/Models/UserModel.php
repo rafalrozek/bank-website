@@ -56,6 +56,12 @@ class UserModel extends Model{
     
 
      }
+     public function subMoney($id, $money){
+        $model = new AccountModel();
+        $account = $model->set('Balance', $this->getMoney($id)-$money)->where('UserId', $id)->update();
+    
+
+     }
      public function getMoney($id){
         $model = new AccountModel();
         $account = $model->where('UserId', $id)->first();
