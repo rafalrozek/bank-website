@@ -2,6 +2,9 @@
 
 use App\Models\LoanModel;
 use App\Models\UserModel;
+use App\Models\ReportModel;
+use App\Models\ReportCommentModel;
+use App\Models\UserContactModel;
 
 class Client extends BaseController 
 {
@@ -10,11 +13,21 @@ class Client extends BaseController
 		$data = [];
 		$loans = new LoanModel();
 		$user = new UserModel();
+		$reports = new ReportModel();
+		$comments = new ReportCommentModel();
+		$contact = new UserContactModel();
 
+		$data['contact'] = $contact->getUserContact($_SESSION['id']);
 		$data['loans'] = $loans->getUserLoans($_SESSION['id']);
-
 		$data['balance'] = $user->getMoney($_SESSION['id']);
+		$data['reports'] = $reports->getUserReports($_SESSION['id']);
+		$i = 0;
+		foreach($data['reports'] as $r){
+			$data['reports'][$i]['messages'] = $comments->getReportComments($r['ReportId']);
+			$i += 1;
+		}
 
+		
 		echo view('templates/header');
 		echo view('client', $data);
 		echo view('templates/footer');
@@ -35,7 +48,6 @@ class Client extends BaseController
 			'paid' => 0,
 			'DateEnd' => date('Y-m-d', strtotime('+1 year'))
 		];
-		print_r($newLoan);
 		$model->insert($newLoan);
 
 		//add money to user
@@ -72,6 +84,57 @@ class Client extends BaseController
 		return redirect()->to('/client');
 
 	}
+	public function report(){
+		$title = $this->request->getVar('title');
+		$msg = $this->request->getVar('message');
+		
+		$report = new ReportModel();
+		$newReport =[
+			'UserId' => $_SESSION['id'],
+            'Title' => $title, 
+        ];
+		$report->insert($newReport);
+		$rid = $report->insertID();
+		
+		$comment = new ReportCommentModel();
+		$comment->addComment($rid, $msg);
+
+		$session = session();
+		$session->setFlashdata('reportAdd', 'Pomyślnie dodano raport.');
+		return redirect()->to('/client');
+	}
+
+	public function editprofile(){
+		$firstname = $this->request->getVar('firstname');
+		$secondname = $this->request->getVar('secondname');
+		$address = $this->request->getVar('address');
+
+		$contact = new UserContactModel();
+		$data = [
+			'FirstName' => $firstname,
+			'SecondName'  => $secondname,
+			'Addres'  => $address
+		];
+
+		$contact->set($data)->where('UserId', $_SESSION['id'])->update();
+
+		$session = session();
+		$session->setFlashdata('editprofile', 'Pomyślnie edytowano profil.');
+		return redirect()->to('/client');
+	}
+
+	public function message(){
+		$rid = $this->request->getVar('reportid');
+		$msg = $this->request->getVar('msg');
+
+		$comment = new ReportCommentModel();
+		$comment->addComment($rid, $msg);
+
+		$session = session();
+		$session->setFlashdata('editprofile', 'Pomyślnie edytowano profil.');
+		return redirect()->to('/client');
+	}
+	
 	
 
 }

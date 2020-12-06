@@ -25,3 +25,21 @@ body{
 ul{
     margin-bottom: 0;
 }
+
+
+.crow:hover{
+    cursor: pointer;
+    background-color: lightcyan;
+}
+
+.comment{
+    background-color: lightcyan;
+}
+
+table{
+    table-layout: fixed;
+}
+
+td{
+    word-wrap:break-word
+}
