@@ -130,11 +130,40 @@ class Client extends BaseController
 		$comment = new ReportCommentModel();
 		$comment->addComment($rid, $msg);
 
-		$session = session();
-		$session->setFlashdata('editprofile', 'Pomyślnie edytowano profil.');
+		//$session = session();
+		//$session->setFlashdata('editprofile', 'Pomyślnie edytowano profil.');
 		return redirect()->to('/client');
 	}
-	
+	public function transaction(){
+		$email = $this->request->getVar('email');
+		$amount = $this->request->getVar('amount');
+
+		//find user by email
+		$model = new UserModel();
+		$user = $model->where('email', $email)->first();
+		if($user == null){
+			return redirect()->to('/client')->with('transactionerr', 'Brak konta z podanym adresem email.');
+		}
+		if($model->getMoney($_SESSION['id']) < $amount){
+			return redirect()->to('/client')->with('transactionerr', 'Brak wystarczających środków na koncie.');
+		}
+		$model->transBegin();
+
+		$model->addMoney($user['UserId'], $amount);
+		$model->submoney($_SESSION['id'], $amount);
+		
+		if ($model->transStatus() === FALSE)
+		{
+				$model->transRollback();
+				return redirect()->to('/client')->with('transactionerr', 'Niespodziewany błąd transakcji.');
+		}
+
+		$model->transCommit();
+		return redirect()->to('/client')->with('transaction', 'Pomyślnie dokonano transakcji na adres ' .$email. ' (-' .$amount.',00 PLN).');
+		
+
+		
+	}
 	
 
 }
