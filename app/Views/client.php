@@ -42,6 +42,22 @@
             </button>
             </div>
         <?php endif ?>
+        <?php if(session()->get('transactionerr')): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?= session()->get('transactionerr') ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        <?php endif ?>
+        <?php if(session()->get('transaction')): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?= session()->get('transaction') ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+        <?php endif ?>
             <div class="col-md-12 bg-white shadow p-3">
                 
                 <h1 style="float: left">Witaj, <?=esc($contact[0]['FirstName'])?></h1>
@@ -82,11 +98,11 @@
                     <div class="col-12">
                         <div class="form-group">
                             <label for="exampleInputPassword1">Email</label>
-                            <input type="text" class="form-control" name="email" placeholder='Email'>
+                            <input type="email" class="form-control" name="email" placeholder='Email'>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Kwota</label>
-                            <input type="number" class="form-control" name="amount" value="100" min="10" max="1000" >
+                            <input type="number" class="form-control" name="amount" value="100" min="10" max=<?=$balance?> >
                         </div>
   
                     </div>
@@ -271,7 +287,7 @@
                         echo "<tr data-toggle='collapse' data-target='#acc".$i."' class='crow' >";
                         echo "<td>".$i."</td>";
                         echo "<td>".substr($r['ReportDate'],0,10)."</td>"; //print without 
-                        echo "<td>".$r['Title']."</td>";
+                        echo "<td>".esc($r['Title'])."</td>";
                         echo "<td class='text-center'>";
                         if($r['Status'] == 0)
                             echo "<img data-toggle='tooltip' data-placement='top' title='Nierozwiązany' alt='ok' src='/assets/icons/wrong.png' width='16' height='16' >";
@@ -285,17 +301,17 @@
                         foreach($r['messages'] as $m){
                             if($m['UserId'] == $_SESSION['id']){
                                 echo "<small>Ty:</small>";
-                                echo "<div class='text-dark font-italic p-2 col-6' style='background-color: lightcyan'>".$m['comment']."</div>";
+                                echo "<div class='text-dark font-italic p-2 col-6' style='background-color: lightcyan'>".esc($m['comment'])."</div>";
                                 echo "<small class='float-right'>Obsługa:</small>";
                                 echo "<div class='clearfix'></div>";
-                                echo "<div class='text-dark font-italic p-2 col-6 float-right text-right' style='background-color: lightgray'>".$m['comment']."</div>";
+                                echo "<div class='text-dark font-italic p-2 col-6 float-right text-right' style='background-color: lightgray'>".esc($m['comment'])."</div>";
                                 echo "<div class='clearfix'></div>";
                                 echo "<small>Ty:</small>";
-                                echo "<div class='text-dark font-italic p-2 col-6' style='background-color: lightcyan'>".$m['comment']."</div>";
+                                echo "<div class='text-dark font-italic p-2 col-6' style='background-color: lightcyan'>".esc($m['comment'])."</div>";
                                 
                             }
                             else{
-                                echo "<div class='text-dark font-italic pt-2 col-6 float-right' style='background-color: lightgray'>".$m['comment']."</div>";
+                                echo "<div class='text-dark font-italic pt-2 col-6 float-right' style='background-color: lightgray'>".esc($m['comment'])."</div>";
                                 echo "<div class='clearfix'></div>";
                             }
                             
