@@ -14,5 +14,12 @@ class ReportModel extends Model{
 
         return $q;
     }
+
+    public function getAllReports(){
+        $model = new ReportModel();
+        $q = $model->select('*')->get()->getResultArray();
+
+        return $q;
+    }
 }
 

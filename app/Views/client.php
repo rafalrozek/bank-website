@@ -64,9 +64,9 @@
                 <span class="pull-right">
                 
                     <a href="/client/logout" style="float: right" data-toggle="tooltip" data-placement="top" title="Wyloguj sie"><img alt="Wyloguj" src="/assets/icons/logout.png" width="16" height="16" ></a>
-                    <span data-toggle="modal" data-target="#settingsModal">
-                        <a style="float: right; margin-right: 10px" data-toggle="tooltip" data-placement="top" title="Ustawienia"><img alt="Settings" src="/assets/icons/settings.png" width="16" height="16" ></a>
-                    </span>
+                    
+                    <a href="/panel" style="float: right; margin-right: 10px" data-toggle="tooltip" data-placement="top" title="Panel"><img alt="Home" src="/assets/icons/home.png" width="18" height="18" ></a>
+                    
                 </span>
                 <div class="clearfix"></div>
                 <hr />
@@ -238,7 +238,7 @@
                     <table class="table sortable">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
+                        <th style='width: 50px' scope="col">#</th>
                         <th scope="col">Kwota</th>
                         <th scope="col">Data Spłaty</th>
                         <th class='text-center' scope="col"><img alt="Spłać" src="/assets/icons/pay.png" width="32" height="32" ></a></th>
@@ -302,15 +302,11 @@
                             if($m['UserId'] == $_SESSION['id']){
                                 echo "<small>Ty:</small>";
                                 echo "<div class='text-dark font-italic p-2 col-6' style='background-color: lightcyan'>".esc($m['comment'])."</div>";
-                                echo "<small class='float-right'>Obsługa:</small>";
                                 echo "<div class='clearfix'></div>";
-                                echo "<div class='text-dark font-italic p-2 col-6 float-right text-right' style='background-color: lightgray'>".esc($m['comment'])."</div>";
-                                echo "<div class='clearfix'></div>";
-                                echo "<small>Ty:</small>";
-                                echo "<div class='text-dark font-italic p-2 col-6' style='background-color: lightcyan'>".esc($m['comment'])."</div>";
                                 
                             }
                             else{
+                                echo "<small>Obsługa:</small>";
                                 echo "<div class='text-dark font-italic pt-2 col-6 float-right' style='background-color: lightgray'>".esc($m['comment'])."</div>";
                                 echo "<div class='clearfix'></div>";
                             }

@@ -8,12 +8,12 @@ class ReportCommentModel extends Model{
     protected $primaryKey = 'CommentID';
     protected $allowedFields = ['CommentID', 'ReportID', 'comment', 'UserId'];
 
-    public function addComment($id, $comment){
+    public function addComment($id, $comment, $uid){
 		$model = new ReportCommentModel();
 		$newComment = [
 			'ReportID' => $id,
             'comment' => $comment,
-            'UserId' => $_SESSION['id']
+            'UserId' => $uid,
 		];
 		$model->insert($newComment);
     }

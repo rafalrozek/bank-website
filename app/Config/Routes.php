@@ -35,6 +35,9 @@ $routes->get('/confirm/(:any)/(:hash)', 'Confirm::index/$1/$2', ['filter' => 'no
 $routes->match(['get', 'post'], '/login', 'Login::index',['filter' => 'noauth']);
 $routes->match(['get', 'post'], '/register', 'Register::index', ['filter' => 'noauth']);
 $routes->match(['get', 'post'], '/client', 'Client::index', ['filter' => 'auth']);
+$routes->match(['get', 'post'], '/panel', 'Client::panel', ['filter' => 'auth']);
+$routes->match(['get', 'post'], '/settings', 'Client::settings', ['filter' => 'auth']);
+$routes->match(['get', 'post'], '/admin', 'Admin::index', ['filter' => 'auth']);
 /**
  * --------------------------------------------------------------------
  * Additional Routing

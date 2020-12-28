@@ -11,7 +11,7 @@ class UserModel extends Model{
 
     protected $table = 'IAB_User';
     protected $primaryKey = 'UserId';
-    protected $allowedFields = ['UserId','email', 'password','active', 'hash'];
+    protected $allowedFields = ['UserId','email', 'password','active', 'hash', 'admin'];
     protected $beforeInsert = ['passwordHash'];
 
     protected function passwordHash(array $data){
@@ -67,6 +67,13 @@ class UserModel extends Model{
         $account = $model->where('UserId', $id)->first();
 
         return $account['Balance'];
+     }
+
+     public function getAllUsers(){
+        $model = new UserModel();
+        $q = $model->select('*')->get()->getResultArray();
+
+        return $q;
      }
 }
 

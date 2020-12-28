@@ -33,6 +33,25 @@ class Client extends BaseController
 		echo view('templates/footer');
 
 	}
+	public function settings(){
+		$data = [];
+
+		$contact = new UserContactModel();
+		$data['contact'] = $contact->getUserContact($_SESSION['id']);
+
+
+		echo view('templates/header');
+		echo view('settings', $data);
+		echo view('templates/footer');
+	}
+	public function panel(){
+		$data = [];
+
+
+		echo view('templates/header');
+		echo view('panel', $data);
+		echo view('templates/footer');
+	}
 	public function logout(){
 		$session = session();
 		$session->remove('isLoggedIn');
@@ -97,7 +116,7 @@ class Client extends BaseController
 		$rid = $report->insertID();
 		
 		$comment = new ReportCommentModel();
-		$comment->addComment($rid, $msg);
+		$comment->addComment($rid, $msg, $_SESSION['id']);
 
 		$session = session();
 		$session->setFlashdata('reportAdd', 'Pomyślnie dodano raport.');
@@ -120,7 +139,7 @@ class Client extends BaseController
 
 		$session = session();
 		$session->setFlashdata('editprofile', 'Pomyślnie edytowano profil.');
-		return redirect()->to('/client');
+		return redirect()->to('/settings');
 	}
 
 	public function message(){
@@ -128,7 +147,7 @@ class Client extends BaseController
 		$msg = $this->request->getVar('msg');
 
 		$comment = new ReportCommentModel();
-		$comment->addComment($rid, $msg);
+		$comment->addComment($rid, $msg, $_SESSION['id']);
 
 		//$session = session();
 		//$session->setFlashdata('editprofile', 'Pomyślnie edytowano profil.');

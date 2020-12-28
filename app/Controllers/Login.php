@@ -42,12 +42,14 @@ class Login extends BaseController
 					'id' => $user['UserId'],
 					'email' => $user['Email'],
 					'firstname' => $firstname,
-					'isLoggedIn' => '1'
+					'isLoggedIn' => '1',
+					'admin' => $user['admin']
 
 				];
 				
 				session()->set($data);
-				return redirect()->to('/client');
+				//return redirect()->to('/client');
+				return redirect()->to('/panel');
 			}
 			$data['validation'] = $this->validator;
 			
