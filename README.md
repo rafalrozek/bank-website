@@ -1,7 +1,7 @@
 # MyBank website using CodeIgniter4
 ### demo: http://iab.rafalrozek.pl
 
-#### Credentials:
+#### credentials:
 ##### user:
 user@user.pl:user@user.pl
 
