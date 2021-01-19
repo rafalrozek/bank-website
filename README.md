@@ -3,10 +3,10 @@
 
 #### credentials:
 ##### user:
-user@user.pl:user@user.pl
+`user@user.pl:user@user.pl`
 
 ##### admin:
-admin@admin.pl:admin@admin.pl
+`admin@admin.pl:admin@admin.pl`
 
 ## What is CodeIgniter?
 
