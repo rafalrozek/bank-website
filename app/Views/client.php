@@ -265,6 +265,47 @@
                 <?php endif ?>
             
             </div>
+            <div class="col-md-12 bg-white shadow p-3 mt-3">
+                <h3>Historia transakcji</h1>
+                <hr />
+                <?php if(count($history) > 0):?>
+                    <table class="table">
+                    <thead>
+                        <tr>
+                        <th style='width: 50px' scope="col">#</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Kwota</th>
+                        <th scope="col">Nadawca</th>
+                        <th scope="col">Odbiorca</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $i = 1;
+                    foreach ($history as $h){
+                        echo "<tr>";
+                        echo "<td>".$i."</td>";
+                        echo "<td>".$h['date']."</td>";
+                        if($h['user_from'] == $_SESSION['id']){
+                            echo "<td class='text-danger font-weight-bold'>-".$h['amount']."</td>";
+                        }
+                        else{
+                            echo "<td class='text-success font-weight-bold'>+".$h['amount']."</td>";
+                        }
+                        echo "<td class='small'>".$h['email_from']."</td>";
+                        echo "<td class='small'>".$h['email_to']."</td>";
+                        echo "</tr>";
+                        $i += 1;
+                    }
+                    ?>
+
+                    </tbody>
+                    </table>
+                <?php else: ?>
+                <p class="ml-3"> Brak transakcji </p>
+                <?php endif ?>
+            
+            </div>
         </div>
         <div class="col-md-4 col-xs-12">
             <div class="col-md-12 bg-white shadow p-3">

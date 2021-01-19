@@ -27,8 +27,8 @@ class UserModel extends Model{
         
         $newContact =[
             'UserId' => $insertId, 
-            'firstname' =>  $firstname,
-            'secondname' => $secondname,
+            'FirstName' =>  $firstname,
+            'SecondName' => $secondname,
         ];
         $this->set('JoinDate', 'NOW()');
         $contactModel->insert($newContact);

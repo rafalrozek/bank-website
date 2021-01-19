@@ -77,7 +77,9 @@ class Register extends BaseController
 
 				$session = session();
 				
-				$this->sendVerificationEmail($this->request->getVar('firstname'), $this->request->getVar('email'));
+				$e = $this->sendVerificationEmail($this->request->getVar('firstname'), $this->request->getVar('email'));
+				echo $e;
+				return;
 				$session->setFlashdata('registerSuccess', 'Zarejestrowano pomyślnie. <br />Potwierdź adres email, aby się zalogować.');
 				return redirect()->to('/login');
 				
@@ -94,7 +96,7 @@ class Register extends BaseController
 	private function sendVerificationEmail($name, $useremail){
 		$email = \Config\Services::email();
 
-        $email->setTo($useremail);
+        $email->setTo('rr@rafalrozek.pl');
         $email->setFrom('kontakt@rafalrozek.pl', 'MyBank');
         
 		$email->setSubject("Potwierdzenie adresu email.");
@@ -103,12 +105,14 @@ class Register extends BaseController
 
         if ($email->send()) 
 		{
-            echo 'Email successfully sent';
+			echo 'Email successfully sent';
+			return 1;
         } 
 		else 
 		{
             $data = $email->printDebugger(['headers']);
-            print_r($data);
+			print_r($data);
+			return 0;
         }
 	}
 }

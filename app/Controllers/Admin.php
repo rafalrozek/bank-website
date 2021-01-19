@@ -51,7 +51,7 @@ class Admin extends BaseController
 
         $model->set('Status', 1)->where('ReportId', $id)->update();
         $session = session();
-        $session->setFlashdata('reportRemove', 'Pomyślnie zamknięto raport (ID: '.$id.')');
+        $session->setFlashdata('reportRemove', 'Pomyślnie zamknięto zgłoszenie (ID: '.$id.')');
 		return redirect()->to('/admin');
 	}
 

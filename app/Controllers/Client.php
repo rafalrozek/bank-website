@@ -5,6 +5,7 @@ use App\Models\UserModel;
 use App\Models\ReportModel;
 use App\Models\ReportCommentModel;
 use App\Models\UserContactModel;
+use App\Models\HistoryModel;
 
 class Client extends BaseController 
 {
@@ -16,11 +17,14 @@ class Client extends BaseController
 		$reports = new ReportModel();
 		$comments = new ReportCommentModel();
 		$contact = new UserContactModel();
+		$history = new HistoryModel();
 
 		$data['contact'] = $contact->getUserContact($_SESSION['id']);
 		$data['loans'] = $loans->getUserLoans($_SESSION['id']);
 		$data['balance'] = $user->getMoney($_SESSION['id']);
 		$data['reports'] = $reports->getUserReports($_SESSION['id']);
+		$data['history'] = $history->getUserHistory($_SESSION['id']);
+
 		$i = 0;
 		foreach($data['reports'] as $r){
 			$data['reports'][$i]['messages'] = $comments->getReportComments($r['ReportId']);
@@ -119,7 +123,7 @@ class Client extends BaseController
 		$comment->addComment($rid, $msg, $_SESSION['id']);
 
 		$session = session();
-		$session->setFlashdata('reportAdd', 'Pomyślnie dodano raport.');
+		$session->setFlashdata('reportAdd', 'Pomyślnie dodano zgłoszenie.');
 		return redirect()->to('/client');
 	}
 
@@ -178,6 +182,19 @@ class Client extends BaseController
 		}
 
 		$model->transCommit();
+
+		//add to history
+		
+		$history = new HistoryModel();
+		$newHistory =[
+			'user_from' => $_SESSION['id'],
+			'user_to' => $user['UserId'],
+			'email_from' => $_SESSION['email'],
+			'email_to' => $email,
+			'amount' => $amount,
+			'date' => date("Y-m-d h:i:s"), 
+        ];
+		$history->insert($newHistory);
 		return redirect()->to('/client')->with('transaction', 'Pomyślnie dokonano transakcji na adres ' .$email. ' (-' .$amount.',00 PLN).');
 		
 

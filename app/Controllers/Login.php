@@ -4,6 +4,11 @@ use App\Models\UserModel;
 
 class Login extends BaseController 
 {
+	public function home(){
+		echo view('templates/header');
+		echo view('home');
+		echo view('templates/footer');
+	}
 	public function index()
 	{
 		$data = [];

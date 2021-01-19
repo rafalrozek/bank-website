@@ -3,7 +3,7 @@
         <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 mt-5 pt-3 pb-3 bg-white from-wrapper shadow">
             <div class="container block-center">
                 <p class="text-center h1">Witaj!</p>
-                        <img src="/assets/icons/banking.png" height="80px" width="80px" class="img-responsive d-block mx-auto mt-4" alt="Bank immage" > </img>
+                        <a href="/"><img src="/assets/icons/banking.png" height="80px" width="80px" class="img-responsive d-block mx-auto mt-4" alt="Bank immage" > </img></a>
                             <form class="mt-4" method="post" action="/login">
                             <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                 <h5>Logowanie</h5>
